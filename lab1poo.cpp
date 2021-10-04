@@ -1,87 +1,87 @@
+
 #include <iostream>
-#include <string>
+
 using namespace std;
-class Student {
-    char name[256];
-    int ani;
-
+class student{
 public:
-    void inputstudent() {
-        cout<<"----------------------------------";
-        cout<<"\nINtrodu numele studentului: "; fflush (stdin); cin.getline (name, 256);
-        cout<<"\n Introdu ani studentului : "; cin >> ani; }
+student(){
+cout<<"Introduceti numele studentului:"<<endl;
+cin>>name_student;
+cout<<"Introduceti varsta studentului:"<<endl;
+cin>>age_student;
+cout<<"Introduceti numarul de cursuri:"<<endl;
+cin>>n;
+marks=new int[n];
+int curs=1;
+for(int i=0;i<n;i++){
+cout<<"Introduceti nota la "<<curs++<<" cursul:"<<endl;
+cin>>marks[i];
+}
+}
+void print_student(){
+int curs=1;
+cout<<"Nume student:"<<name_student<<" Varsta:"<<age_student<<endl;
+for(int i=0;i<n;i++){
+cout<<"Note discipline: "<<curs++<<":"<<marks[i]<<endl;
+}
 
-    void displaystudent() {
-        cout<<"----------------------------------" << endl;
-        cout<<"Student  " << endl;
-        cout<<"----------------------------------";
-        cout<<"\n Numele studentului : " << name << endl;
-        cout<<"\n Anii studentului : "<< ani << endl; }
+}
+float media(){
+int sum=0;
+for(int i=0;i<n;i++){
+sum+=marks[i];
+}
+s=(float)sum/(float)n;
+return s;
+}
+private:
+char name_student[50];
+int *marks;
+int age_student;
+int n;
+float s;
 };
-
-class Notastudent : public Student {
+class univer:public student{
 public:
-    int first;
-    int second;
-    int third;
-    float total;
+univer(){
+cout<<"Introduceti denumirea universitatii:"<<endl;
+cin>>name;
+cout<<"Introduceti anul fondarii"<<endl;
+cin>>age;
+cout<<"Numarul de studenti:"<<endl;
+cin>>count;
+s=new student[count];
+}
+void med_s(){
+float med_univ=0;
+for(int i=0;i<count;i++){
+med_univ+=s[i].media();
+}
+med_u=med_univ/count;
+}
+void print(){
+cout<<name<<" "<<age<<endl;
+for(int i=0;i<count;i++){
+s[i].print_student();
 
-public:
-    void inputdmark() {
-        inputstudent();
-        cout << "\n Introdu prima nota  : "; cin >> first;
-        cout << "\n Introdu a doua nota  : "; cin >> second;
-        cout << "\n Introdu a treia nota  : "; cin >> third; }
-
-    void displaydmark() {
-        displaystudent();
-        cout << "\n Prima nota : " << first << endl;
-        cout << "\n A doua nota : " << second << endl;
-        cout << "\n A treia nota: " << third << endl; }
+}
+cout<<"Media universitate:"<<med_u<<endl;
+}
+private:
+char name[50];
+int age;
+int count;
+student *s;
+float med_u;
 };
-
-class StudentResult : public Notastudent {
-public:
-    int calculate() {
-        total = (first + second + third) / 3.0;
-        return total; }
-};
-
-class Univer {
-    char univerNume[256];
-    int foundationYear;
-
-public:
-    void inputuniver() {
-        cout<<"----------------------------------";
-        cout<<"\n Introdu numele universitati  : "; fflush (stdin); cin.getline (univerNume, 256);
-        cout<<"\n Introdu ani de fondare : "; cin >> foundationYear; }
-
-    void displayuniver() {
-        cout<<"----------------------------------" << endl;
-        cout<<" Universitate" << endl;
-        cout<<"----------------------------------" << endl;
-        cout<<"NUmele universitati : " << univerNume << endl << endl;
-        cout<<" Anii fondarii : " << foundationYear << endl << endl; }
-} ;
-
-int main() {
-
-    Univer arr;
-    cout << "\n Introdu nr de universitati  : "; int c; cin >> c;
-
-    int s = 0;
-    for (int i = 0; i < c; i++) {
-        arr.inputuniver ();
-        StudentResult str;
-        cout << "\n Introdu nr de studenti : "; int n; cin >> n;
-        for (int j = 0; j < n; j++) {
-            str.inputdmark();
-            str.displaydmark();
-            str.calculate();
-            s += str.calculate(); }
-        arr.displayuniver();
-
-        cout << " Nota generala : " << (float) s / n << endl; }
-
-    return 0; }
+int main()
+{
+int n;
+cout<<"Introduceti numarul de universitati:"<<endl;
+cin>>n;
+univer s[n];
+for(int i=0;i<n;i++){
+s[i].print();
+}
+return 0;
+}

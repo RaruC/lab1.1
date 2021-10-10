@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("Basic Level:");
+        System.out.println("Introdu textul:");
+
+        Scanner input = new Scanner(System.in);
+        String text = input.nextLine();
+        Text textInput = new Text(text);
+
+        System.out.println("Numarul de propozitii: " + textInput.countSentences());
+        System.out.println("Numar de cuvinte:" + textInput.countWords());
+
+        System.out.println("\nAdvanced Level (1):");
+        System.out.println("Litere: " + textInput.countLitere());
+        System.out.println("Vocale: " + textInput.countVocale());
+        System.out.println("Consoane: " + textInput.countConsonants());
+
+        System.out.println("\nAdvanced Level (2):");
+        System.out.println("Cel mai frecvent cuvant este: " + textInput.getFrequent());
+        System.out.println("Cek mai lung cuvant este: " + textInput.getLongest());
+    }
+}
